@@ -12,16 +12,39 @@ namespace Telephone.Application.Information
     {
         private string serverAddress = "http://quantum1234.cloudapp.net:6688";
 
+        //获取所有服务名称
         public IEnumerable<string> GetCollectionServices()
         {
             var client = ClientFactory.CreateCollectionStatusClient(serverAddress);
             return client.GetAllServiceName();
         }
 
-        public IEnumerable<IStockIntraday> GetIntradayData()
+        //获取指定服务状态
+        public string GetServiceStatus(string serviceName)
+        {
+            var client = ClientFactory.CreateCollectionStatusClient(serverAddress);
+            return client.GetStatus(serviceName);
+        }
+
+        //获取股票实时数据
+        public IEnumerable<IStockRealTime> GetStockRealTimeData(IEnumerable<string> stockCodes)
+        {
+            var client = ClientFactory.CreateRealTimeClient(serverAddress);
+            return client.GetLatest(stockCodes).Cast<IStockRealTime>();
+        }
+
+        //获取分时数据
+        public IEnumerable<IStockIntraday> GetIntradayData(string stockCode, DateTime startDate, DateTime endDate)
         {
             var client = ClientFactory.CreateIntradayClient(serverAddress);
-            return client.GetData("600036", DateTime.Now, DateTime.Now).Cast<IStockIntraday>();
+            return client.GetData(stockCode, startDate, endDate).Cast<IStockIntraday>();
+        }
+
+        //获取K线1分钟数据
+        public IEnumerable<IStockKLine> GetKLineBy1Minute(string stockCode, DateTime startDate, DateTime endDate)
+        {
+            var client = ClientFactory.CreateKLineClient(serverAddress);
+            return client.GetBy1Minute(stockCode, startDate, endDate).Cast<IStockKLine>();
         }
     }
 }
