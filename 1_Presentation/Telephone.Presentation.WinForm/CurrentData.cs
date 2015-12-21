@@ -17,12 +17,12 @@ namespace Telephone.Presentation.WinForm
         }
 
         public BindingSource CurrBindSrc { get; set; }
-        public DataReader CurrDateRead { get; set; }
+        public DataReader CurrDateReader { get; set; }
 
         public CurrentData()
         {
             CurrBindSrc = new BindingSource();
-            CurrDateRead = new DataReader();
+            CurrDateReader = new DataReader();
         }
 
 

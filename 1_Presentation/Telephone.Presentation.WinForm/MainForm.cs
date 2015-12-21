@@ -35,15 +35,21 @@ namespace Telephone.Presentation.WinForm
             tsslCurrent.Text = "服务状态查询";
             try
             {
-                var lstSrv = CurrentData.Instance.CurrDateRead.GetCollectionServices();
-                StringBuilder sb = new StringBuilder("服务状态：");
-                foreach (var it in lstSrv)
+                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    sb.Append(string.Format("{0}[{1}], ", it, CurrentData.Instance.CurrDateRead.GetServiceStatus(it)));
-                }
-                tsslSrvStatus.Text = sb.ToString(0, sb.Length - 2);
-
-                tsslCurrent.Text = "服务状态查询：成功";
+                    var lstSrv = CurrentData.Instance.CurrDateReader.GetCollectionServices();
+                    StringBuilder sb = new StringBuilder("服务状态：");
+                    foreach (var it in lstSrv)
+                    {
+                        sb.Append(string.Format("{0}[{1}], ", it, CurrentData.Instance.CurrDateReader.GetServiceStatus(it)));
+                    }
+                    this.Invoke(new EventHandler(delegate
+                    {
+                        tsslSrvStatus.Text = sb.ToString(0, sb.Length - 2);
+                        tsslCurrent.Text = "服务状态查询：成功";
+                    }));
+                    
+                }));
             }
             catch(Exception ex)
             {
@@ -73,6 +79,7 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmRealTime_Click(object sender, EventArgs e)
         {
+            dataGridView.DataSource = null;
             tsslCurrent.Text = "实时数据查询";
             FormQuery frmQuery = new FormQuery(1);
             if (DialogResult.OK != frmQuery.ShowDialog())
@@ -82,10 +89,16 @@ namespace Telephone.Presentation.WinForm
 
             try
             {
-                dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
-                CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateRead.GetStockRealTimeData(lstStockCodes);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                {                    
+                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetStockRealTimeData(lstStockCodes);
 
-                tsslCurrent.Text = "实时数据查询：成功";
+                    this.Invoke(new EventHandler(delegate
+                    {
+                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        tsslCurrent.Text = "实时数据查询：成功";
+                    }));                    
+                }));
             }
             catch(Exception ex)
             {
@@ -95,6 +108,7 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmTimeShare_Click(object sender, EventArgs e)
         {
+            dataGridView.DataSource = null;
             tsslCurrent.Text = "分时数据查询";
             FormQuery frmQuery = new FormQuery();
             if (DialogResult.OK != frmQuery.ShowDialog())
@@ -106,12 +120,18 @@ namespace Telephone.Presentation.WinForm
 
             try
             {
-                dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
-                CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateRead.GetIntradayData(stockCode, bgnDate, endDate);
-
-                tsslCurrent.Text = "分时数据查询：成功";
+                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                {                    
+                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetIntradayData(stockCode, bgnDate, endDate);
+                    
+                    this.Invoke(new EventHandler(delegate
+                    {
+                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        tsslCurrent.Text = "分时数据查询：成功";
+                    }));
+                }));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 tsslCurrent.Text = "分时数据查询：失败" + ex.InnerException.Message;
             }
@@ -119,23 +139,30 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmKLine_Click(object sender, EventArgs e)
         {
+            dataGridView.DataSource = null;
             tsslCurrent.Text = "K线数据查询";
             FormQuery frmQuery = new FormQuery();
             if (DialogResult.OK != frmQuery.ShowDialog())
                 return;
-            
+
             string stockCode = frmQuery.StockCode;
             DateTime startDate = frmQuery.BgnDate;
             DateTime endDate = frmQuery.EndDate;
 
             try
             {
-                dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
-                CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateRead.GetKLineBy1Minute(stockCode, startDate, endDate);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                {                   
+                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineBy1Minute(stockCode, startDate, endDate);
 
-                tsslCurrent.Text = "K线数据查询：成功";
+                    this.Invoke(new EventHandler(delegate
+                    {
+                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        tsslCurrent.Text = "K线数据查询：成功";
+                    }));
+                }));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 tsslCurrent.Text = "K线数据查询：失败" + ex.InnerException.Message;
             }
@@ -143,6 +170,7 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmStockStructure_Click(object sender, EventArgs e)
         {
+            dataGridView.DataSource = null;
             tsslCurrent.Text = "股本结构信息查询";
             try
             {
@@ -157,6 +185,7 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmDividendDistribution_Click(object sender, EventArgs e)
         {
+            dataGridView.DataSource = null;
             tsslCurrent.Text = "分红分配信息查询";
 
             try
@@ -172,6 +201,7 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmBasicInfo_Click(object sender, EventArgs e)
         {
+            dataGridView.DataSource = null;
             tsslCurrent.Text = "基本面信息查询";
 
             try
