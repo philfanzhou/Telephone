@@ -32,7 +32,10 @@
   <ItemGroup>
     <Reference Include="Ore.Infrastructure.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Pitman\Publish.Dll\Pitman.RESTful.Client\Ore.Infrastructure.MarketData.dll</HintPath>
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData\Ore.Infrastructure.MarketData.dll</HintPath>
+    </Reference>
+    <Reference Include="Ore.Infrastructure.MarketData.DataSource.Sina">
+      <HintPath>..\..\..\Ore\Publish.Dll\Ore.Infrastructure.MarketData.DataSource.Sina\Ore.Infrastructure.MarketData.DataSource.Sina.dll</HintPath>
     </Reference>
     <Reference Include="Pitman.Distributed.Dto">
       <HintPath>..\..\..\Pitman\Publish.Dll\Pitman.RESTful.Client\Pitman.Distributed.Dto.dll</HintPath>
