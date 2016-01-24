@@ -30,14 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ore.Infrastructure.MarketData">
-      <HintPath>..\..\Refer.Dll\Ore.Infrastructure.MarketData.dll</HintPath>
+    <Reference Include="Ore.Infrastructure.MarketData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Pitman\Publish.Dll\Pitman.RESTful.Client\Ore.Infrastructure.MarketData.dll</HintPath>
     </Reference>
-    <Reference Include="Pitman.DistributedService.Contracts">
-      <HintPath>..\..\Refer.Dll\Pitman.DistributedService.Contracts.dll</HintPath>
+    <Reference Include="Pitman.Distributed.Dto">
+      <HintPath>..\..\..\Pitman\Publish.Dll\Pitman.RESTful.Client\Pitman.Distributed.Dto.dll</HintPath>
     </Reference>
-    <Reference Include="Pitman.Presentation.RESTfulClient">
-      <HintPath>..\..\Refer.Dll\Pitman.Presentation.RESTfulClient.dll</HintPath>
+    <Reference Include="Pitman.RESTful.Client">
+      <HintPath>..\..\..\Pitman\Publish.Dll\Pitman.RESTful.Client\Pitman.RESTful.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
