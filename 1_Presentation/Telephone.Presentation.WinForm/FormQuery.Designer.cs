@@ -37,6 +37,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lbAlarm = new System.Windows.Forms.Label();
+            this.dtpBgnTime = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -57,15 +59,15 @@
             // 
             // dtpBgnDate
             // 
-            this.dtpBgnDate.Location = new System.Drawing.Point(127, 99);
+            this.dtpBgnDate.Location = new System.Drawing.Point(127, 86);
             this.dtpBgnDate.Name = "dtpBgnDate";
-            this.dtpBgnDate.Size = new System.Drawing.Size(244, 21);
+            this.dtpBgnDate.Size = new System.Drawing.Size(135, 21);
             this.dtpBgnDate.TabIndex = 2;
             // 
             // lbBgnDate
             // 
             this.lbBgnDate.AutoSize = true;
-            this.lbBgnDate.Location = new System.Drawing.Point(62, 103);
+            this.lbBgnDate.Location = new System.Drawing.Point(62, 90);
             this.lbBgnDate.Name = "lbBgnDate";
             this.lbBgnDate.Size = new System.Drawing.Size(65, 12);
             this.lbBgnDate.TabIndex = 3;
@@ -74,7 +76,7 @@
             // lbEndDate
             // 
             this.lbEndDate.AutoSize = true;
-            this.lbEndDate.Location = new System.Drawing.Point(62, 150);
+            this.lbEndDate.Location = new System.Drawing.Point(62, 125);
             this.lbEndDate.Name = "lbEndDate";
             this.lbEndDate.Size = new System.Drawing.Size(65, 12);
             this.lbEndDate.TabIndex = 4;
@@ -82,15 +84,15 @@
             // 
             // dtpEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(127, 146);
+            this.dtpEndDate.Location = new System.Drawing.Point(127, 121);
             this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(244, 21);
+            this.dtpEndDate.Size = new System.Drawing.Size(135, 21);
             this.dtpEndDate.TabIndex = 5;
             // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(127, 202);
+            this.btnOK.Location = new System.Drawing.Point(127, 169);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 6;
@@ -101,7 +103,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(255, 202);
+            this.btnCancel.Location = new System.Drawing.Point(255, 169);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
@@ -120,13 +122,35 @@
             this.lbAlarm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbAlarm.Visible = false;
             // 
+            // dtpBgnTime
+            // 
+            this.dtpBgnTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpBgnTime.Location = new System.Drawing.Point(268, 86);
+            this.dtpBgnTime.Name = "dtpBgnTime";
+            this.dtpBgnTime.ShowUpDown = true;
+            this.dtpBgnTime.Size = new System.Drawing.Size(103, 21);
+            this.dtpBgnTime.TabIndex = 9;
+            this.dtpBgnTime.Value = new System.DateTime(2016, 2, 22, 9, 0, 0, 0);
+            // 
+            // dtpEndTime
+            // 
+            this.dtpEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndTime.Location = new System.Drawing.Point(268, 121);
+            this.dtpEndTime.Name = "dtpEndTime";
+            this.dtpEndTime.ShowUpDown = true;
+            this.dtpEndTime.Size = new System.Drawing.Size(103, 21);
+            this.dtpEndTime.TabIndex = 9;
+            this.dtpEndTime.Value = new System.DateTime(2016, 2, 22, 15, 0, 0, 0);
+            // 
             // FormQuery
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(455, 238);
+            this.ClientSize = new System.Drawing.Size(455, 214);
+            this.Controls.Add(this.dtpEndTime);
+            this.Controls.Add(this.dtpBgnTime);
             this.Controls.Add(this.lbAlarm);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -162,5 +186,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lbAlarm;
+        private System.Windows.Forms.DateTimePicker dtpBgnTime;
+        private System.Windows.Forms.DateTimePicker dtpEndTime;
     }
 }

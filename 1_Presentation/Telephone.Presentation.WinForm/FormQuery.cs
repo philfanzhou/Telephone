@@ -46,7 +46,9 @@ namespace Telephone.Presentation.WinForm
                 lbBgnDate.Visible = false;
                 lbEndDate.Visible = false;
                 dtpBgnDate.Visible = false;
+                dtpBgnTime.Visible = false;
                 dtpEndDate.Visible = false;
+                dtpEndTime.Visible = false;
             }
         }
 
@@ -75,8 +77,20 @@ namespace Telephone.Presentation.WinForm
             }
 
             StockCode = matchCodes[0].Value;
-            BgnDate = dtpBgnDate.Value;
-            EndDate = dtpEndDate.Value;            
+            BgnDate = new DateTime(
+                dtpBgnDate.Value.Year, 
+                dtpBgnDate.Value.Month, 
+                dtpBgnDate.Value.Day, 
+                dtpBgnTime.Value.Hour,
+                dtpBgnTime.Value.Minute,
+                dtpBgnTime.Value.Second);
+            EndDate = new DateTime(
+                dtpEndDate.Value.Year,
+                dtpEndDate.Value.Month,
+                dtpEndDate.Value.Day,
+                dtpEndTime.Value.Hour,
+                dtpEndTime.Value.Minute,
+                dtpEndTime.Value.Second);            
 
             this.DialogResult = DialogResult.OK;
         }

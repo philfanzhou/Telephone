@@ -14,7 +14,7 @@ namespace Test.Application.Information
 
             var serviceNames = reader.GetCollectionServices();
 
-            var data = reader.GetIntradayData("600036", DateTime.Now, DateTime.Now);
+            //var data = reader.GetIntradayData("600036", DateTime.Now, DateTime.Now);
         }
     }
 }
