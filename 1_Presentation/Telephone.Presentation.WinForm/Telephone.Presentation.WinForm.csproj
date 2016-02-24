@@ -52,6 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\CandleChart.cs" />
+    <Compile Include="Control\TestChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TestChartForm.Designer.cs">
+      <DependentUpon>TestChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurrentData.cs" />
     <Compile Include="FormQuery.cs">
       <SubType>Form</SubType>
@@ -67,6 +74,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Control\TestChartForm.resx">
+      <DependentUpon>TestChartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormQuery.resx">
       <DependentUpon>FormQuery.cs</DependentUpon>
     </EmbeddedResource>

@@ -49,6 +49,7 @@
             this.tsmKLineMin5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmKLineMin15 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmKLineMin30 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmKLineMin60 = new System.Windows.Forms.ToolStripMenuItem();
             this.基本面数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAllSecurity = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -62,7 +63,8 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslSysTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerSys = new System.Windows.Forms.Timer(this.components);
-            this.tsmKLineMin60 = new System.Windows.Forms.ToolStripMenuItem();
+            this.图表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.蜡炬图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStripSys.SuspendLayout();
             this.statusStripSys.SuspendLayout();
@@ -83,7 +85,8 @@
             this.menuStripSys.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.系统ToolStripMenuItem,
             this.实时数据ToolStripMenuItem,
-            this.基本面数据ToolStripMenuItem});
+            this.基本面数据ToolStripMenuItem,
+            this.图表ToolStripMenuItem});
             this.menuStripSys.Location = new System.Drawing.Point(0, 0);
             this.menuStripSys.Name = "menuStripSys";
             this.menuStripSys.Size = new System.Drawing.Size(774, 25);
@@ -171,65 +174,72 @@
             // tsmKLineDay
             // 
             this.tsmKLineDay.Name = "tsmKLineDay";
-            this.tsmKLineDay.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineDay.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineDay.Text = "日线";
             this.tsmKLineDay.Click += new System.EventHandler(this.tsmKLineDay_Click);
             // 
             // tsmKLineWeek
             // 
             this.tsmKLineWeek.Name = "tsmKLineWeek";
-            this.tsmKLineWeek.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineWeek.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineWeek.Text = "周线";
             this.tsmKLineWeek.Click += new System.EventHandler(this.tsmKLineWeek_Click);
             // 
             // tsmKLineMonth
             // 
             this.tsmKLineMonth.Name = "tsmKLineMonth";
-            this.tsmKLineMonth.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineMonth.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineMonth.Text = "月线";
             this.tsmKLineMonth.Click += new System.EventHandler(this.tsmKLineMonth_Click);
             // 
             // tsmKLineQuarter
             // 
             this.tsmKLineQuarter.Name = "tsmKLineQuarter";
-            this.tsmKLineQuarter.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineQuarter.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineQuarter.Text = "季线";
             this.tsmKLineQuarter.Click += new System.EventHandler(this.tsmKLineQuarter_Click);
             // 
             // tsmKLineYear
             // 
             this.tsmKLineYear.Name = "tsmKLineYear";
-            this.tsmKLineYear.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineYear.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineYear.Text = "年线";
             this.tsmKLineYear.Click += new System.EventHandler(this.tsmKLineYear_Click);
             // 
             // tsmKLineMin1
             // 
             this.tsmKLineMin1.Name = "tsmKLineMin1";
-            this.tsmKLineMin1.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineMin1.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineMin1.Text = "1分钟线";
             this.tsmKLineMin1.Click += new System.EventHandler(this.tsmKLineMin1_Click);
             // 
             // tsmKLineMin5
             // 
             this.tsmKLineMin5.Name = "tsmKLineMin5";
-            this.tsmKLineMin5.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineMin5.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineMin5.Text = "5分钟线";
             this.tsmKLineMin5.Click += new System.EventHandler(this.tsmKLineMin5_Click);
             // 
             // tsmKLineMin15
             // 
             this.tsmKLineMin15.Name = "tsmKLineMin15";
-            this.tsmKLineMin15.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineMin15.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineMin15.Text = "15分钟线";
             this.tsmKLineMin15.Click += new System.EventHandler(this.tsmKLineMin15_Click);
             // 
             // tsmKLineMin30
             // 
             this.tsmKLineMin30.Name = "tsmKLineMin30";
-            this.tsmKLineMin30.Size = new System.Drawing.Size(152, 22);
+            this.tsmKLineMin30.Size = new System.Drawing.Size(126, 22);
             this.tsmKLineMin30.Text = "30分钟线";
             this.tsmKLineMin30.Click += new System.EventHandler(this.tsmKLineMin30_Click);
+            // 
+            // tsmKLineMin60
+            // 
+            this.tsmKLineMin60.Name = "tsmKLineMin60";
+            this.tsmKLineMin60.Size = new System.Drawing.Size(126, 22);
+            this.tsmKLineMin60.Text = "60分钟线";
+            this.tsmKLineMin60.Click += new System.EventHandler(this.tsmKLineMin60_Click);
             // 
             // 基本面数据ToolStripMenuItem
             // 
@@ -247,40 +257,40 @@
             // tsmAllSecurity
             // 
             this.tsmAllSecurity.Name = "tsmAllSecurity";
-            this.tsmAllSecurity.Size = new System.Drawing.Size(136, 22);
+            this.tsmAllSecurity.Size = new System.Drawing.Size(152, 22);
             this.tsmAllSecurity.Text = "所有证券";
             this.tsmAllSecurity.Click += new System.EventHandler(this.tsmAllSecurity_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // tsmBasicInfo
             // 
             this.tsmBasicInfo.Name = "tsmBasicInfo";
-            this.tsmBasicInfo.Size = new System.Drawing.Size(136, 22);
+            this.tsmBasicInfo.Size = new System.Drawing.Size(152, 22);
             this.tsmBasicInfo.Text = "基本信息";
             this.tsmBasicInfo.Click += new System.EventHandler(this.tsmBasicInfo_Click);
             // 
             // tsmStockStructure
             // 
             this.tsmStockStructure.Name = "tsmStockStructure";
-            this.tsmStockStructure.Size = new System.Drawing.Size(136, 22);
+            this.tsmStockStructure.Size = new System.Drawing.Size(152, 22);
             this.tsmStockStructure.Text = "股本结构";
             this.tsmStockStructure.Click += new System.EventHandler(this.tsmStockStructure_Click);
             // 
             // tsmDividendDistribution
             // 
             this.tsmDividendDistribution.Name = "tsmDividendDistribution";
-            this.tsmDividendDistribution.Size = new System.Drawing.Size(136, 22);
+            this.tsmDividendDistribution.Size = new System.Drawing.Size(152, 22);
             this.tsmDividendDistribution.Text = "分红分配";
             this.tsmDividendDistribution.Click += new System.EventHandler(this.tsmDividendDistribution_Click);
             // 
             // tsmParticipation
             // 
             this.tsmParticipation.Name = "tsmParticipation";
-            this.tsmParticipation.Size = new System.Drawing.Size(136, 22);
+            this.tsmParticipation.Size = new System.Drawing.Size(152, 22);
             this.tsmParticipation.Text = "机构参与度";
             this.tsmParticipation.Click += new System.EventHandler(this.tsmParticipation_Click);
             // 
@@ -327,12 +337,20 @@
             this.timerSys.Interval = 1000;
             this.timerSys.Tick += new System.EventHandler(this.timerSys_Tick);
             // 
-            // tsmKLineMin60
+            // 图表ToolStripMenuItem
             // 
-            this.tsmKLineMin60.Name = "tsmKLineMin60";
-            this.tsmKLineMin60.Size = new System.Drawing.Size(152, 22);
-            this.tsmKLineMin60.Text = "60分钟线";
-            this.tsmKLineMin60.Click += new System.EventHandler(this.tsmKLineMin60_Click);
+            this.图表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.蜡炬图ToolStripMenuItem});
+            this.图表ToolStripMenuItem.Name = "图表ToolStripMenuItem";
+            this.图表ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.图表ToolStripMenuItem.Text = "图表";
+            // 
+            // 蜡炬图ToolStripMenuItem
+            // 
+            this.蜡炬图ToolStripMenuItem.Name = "蜡炬图ToolStripMenuItem";
+            this.蜡炬图ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.蜡炬图ToolStripMenuItem.Text = "蜡炬图";
+            this.蜡炬图ToolStripMenuItem.Click += new System.EventHandler(this.蜡炬图ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -392,6 +410,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmKLineMin15;
         private System.Windows.Forms.ToolStripMenuItem tsmKLineMin30;
         private System.Windows.Forms.ToolStripMenuItem tsmKLineMin60;
+        private System.Windows.Forms.ToolStripMenuItem 图表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 蜡炬图ToolStripMenuItem;
     }
 }
 

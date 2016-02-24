@@ -21,6 +21,7 @@ namespace Telephone.Presentation.WinForm
             if (mutex.WaitOne(0, false))
             {
                 System.Windows.Forms.Application.Run(new MainForm());
+                //System.Windows.Forms.Application.Run(new TestChartForm());
             }
             else
             {
