@@ -613,5 +613,11 @@ namespace Telephone.Presentation.WinForm
                 frmAccount.ShowDialog(this);
             }
         }
+
+        private void 蜡炬图ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TestChartForm form = new TestChartForm();
+            form.ShowDialog();
+        }
     }
 }

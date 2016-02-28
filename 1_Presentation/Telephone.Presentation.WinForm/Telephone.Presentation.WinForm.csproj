@@ -57,6 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigHelper.cs" />
+    <Compile Include="Control\CandleChart.cs" />
+    <Compile Include="Control\TestChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Control\TestChartForm.Designer.cs">
+      <DependentUpon>TestChartForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CurrentData.cs" />
     <Compile Include="FormAccount.cs">
       <SubType>Form</SubType>
@@ -110,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TestChartForm.resx">
+      <DependentUpon>TestChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuery.resx">
       <DependentUpon>FormQuery.cs</DependentUpon>

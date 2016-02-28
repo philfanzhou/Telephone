@@ -66,6 +66,8 @@
             this.tsslSysTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerSys = new System.Windows.Forms.Timer(this.components);
             this.tsslAccount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.图表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.蜡炬图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStripSys.SuspendLayout();
             this.statusStripSys.SuspendLayout();
@@ -87,7 +89,8 @@
             this.系统ToolStripMenuItem,
             this.实时数据ToolStripMenuItem,
             this.基本面数据ToolStripMenuItem,
-            this.交易ToolStripMenuItem});
+            this.交易ToolStripMenuItem,
+            this.图表ToolStripMenuItem});
             this.menuStripSys.Location = new System.Drawing.Point(0, 0);
             this.menuStripSys.Name = "menuStripSys";
             this.menuStripSys.Size = new System.Drawing.Size(774, 25);
@@ -258,40 +261,40 @@
             // tsmAllSecurity
             // 
             this.tsmAllSecurity.Name = "tsmAllSecurity";
-            this.tsmAllSecurity.Size = new System.Drawing.Size(136, 22);
+            this.tsmAllSecurity.Size = new System.Drawing.Size(152, 22);
             this.tsmAllSecurity.Text = "所有证券";
             this.tsmAllSecurity.Click += new System.EventHandler(this.tsmAllSecurity_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // tsmBasicInfo
             // 
             this.tsmBasicInfo.Name = "tsmBasicInfo";
-            this.tsmBasicInfo.Size = new System.Drawing.Size(136, 22);
+            this.tsmBasicInfo.Size = new System.Drawing.Size(152, 22);
             this.tsmBasicInfo.Text = "基本信息";
             this.tsmBasicInfo.Click += new System.EventHandler(this.tsmBasicInfo_Click);
             // 
             // tsmStockStructure
             // 
             this.tsmStockStructure.Name = "tsmStockStructure";
-            this.tsmStockStructure.Size = new System.Drawing.Size(136, 22);
+            this.tsmStockStructure.Size = new System.Drawing.Size(152, 22);
             this.tsmStockStructure.Text = "股本结构";
             this.tsmStockStructure.Click += new System.EventHandler(this.tsmStockStructure_Click);
             // 
             // tsmDividendDistribution
             // 
             this.tsmDividendDistribution.Name = "tsmDividendDistribution";
-            this.tsmDividendDistribution.Size = new System.Drawing.Size(136, 22);
+            this.tsmDividendDistribution.Size = new System.Drawing.Size(152, 22);
             this.tsmDividendDistribution.Text = "分红分配";
             this.tsmDividendDistribution.Click += new System.EventHandler(this.tsmDividendDistribution_Click);
             // 
             // tsmParticipation
             // 
             this.tsmParticipation.Name = "tsmParticipation";
-            this.tsmParticipation.Size = new System.Drawing.Size(136, 22);
+            this.tsmParticipation.Size = new System.Drawing.Size(152, 22);
             this.tsmParticipation.Text = "机构参与度";
             this.tsmParticipation.Click += new System.EventHandler(this.tsmParticipation_Click);
             // 
@@ -359,6 +362,20 @@
             this.tsslAccount.Name = "tsslAccount";
             this.tsslAccount.Size = new System.Drawing.Size(68, 17);
             this.tsslAccount.Text = "登录账户：";
+            // 图表ToolStripMenuItem
+            // 
+            this.图表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.蜡炬图ToolStripMenuItem});
+            this.图表ToolStripMenuItem.Name = "图表ToolStripMenuItem";
+            this.图表ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.图表ToolStripMenuItem.Text = "图表";
+            // 
+            // 蜡炬图ToolStripMenuItem
+            // 
+            this.蜡炬图ToolStripMenuItem.Name = "蜡炬图ToolStripMenuItem";
+            this.蜡炬图ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.蜡炬图ToolStripMenuItem.Text = "蜡炬图";
+            this.蜡炬图ToolStripMenuItem.Click += new System.EventHandler(this.蜡炬图ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -421,6 +438,8 @@
         private System.Windows.Forms.ToolStripMenuItem 交易ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmLogin;
         private System.Windows.Forms.ToolStripStatusLabel tsslAccount;
+        private System.Windows.Forms.ToolStripMenuItem 图表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 蜡炬图ToolStripMenuItem;
     }
 }
 
