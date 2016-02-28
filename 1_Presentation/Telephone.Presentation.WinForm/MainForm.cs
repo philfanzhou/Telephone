@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Quantum.Domain.Trading;
 using Telephone.Application.Information;
 
 namespace Telephone.Presentation.WinForm
@@ -37,11 +38,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    var lstSrv = CurrentData.Instance.CurrDateReader.GetCollectionServices();
+                    var lstSrv = CurrentData.Instance.DateReader.GetCollectionServices();
                     StringBuilder sb = new StringBuilder("服务状态：");
                     foreach (var it in lstSrv)
                     {
-                        sb.Append(string.Format("{0}[{1}], ", it, CurrentData.Instance.CurrDateReader.GetServiceStatus(it)));
+                        sb.Append(string.Format("{0}[{1}], ", it, CurrentData.Instance.DateReader.GetServiceStatus(it)));
                     }
                     this.Invoke(new EventHandler(delegate
                     {
@@ -64,7 +65,11 @@ namespace Telephone.Presentation.WinForm
         
         private void tsmSetup_Click(object sender, EventArgs e)
         {
-
+            FormConfig frmConfig = new FormConfig();
+            if(DialogResult.OK == frmConfig.ShowDialog(this))
+            {
+                CurrentData.Instance.DateReader.ServerAddress = frmConfig.ServerAddress;
+            }
         }
 
         private void tsmCleanup_Click(object sender, EventArgs e)
@@ -92,11 +97,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {                    
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetStockRealTimeData(lstStockCodes);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetStockRealTimeData(lstStockCodes);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "实时数据查询：成功";
                     }));                    
                 }));
@@ -156,11 +161,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetStockStructureData(lstStockCodes.First());
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetStockStructureData(lstStockCodes.First());
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "股本结构信息查询:成功";
                     }));
                 }));                
@@ -184,11 +189,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetStockBonusData(lstStockCodes.First());
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetStockBonusData(lstStockCodes.First());
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "分红分配信息查询:成功";
                     }));
                 }));                
@@ -213,11 +218,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetStockProfileData(lstStockCodes.First());
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetStockProfileData(lstStockCodes.First());
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "基本面信息查询:成功";
                     }));
                 }));                
@@ -237,11 +242,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetAllSecurityData();
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetAllSecurityData();
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "所有证券代码信息:成功";
                     }));
                 }));                
@@ -265,11 +270,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetParticipationData(lstStockCodes.First());
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetParticipationData(lstStockCodes.First());
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "机构参与度数据查询:成功";
                     }));
                 }));
@@ -300,11 +305,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineDay(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineDay(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "日K线数据查询：成功";
                     }));
                 }));
@@ -331,11 +336,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineWeek(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineWeek(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "周K线数据查询：成功";
                     }));
                 }));
@@ -362,11 +367,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineMonth(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineMonth(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "月K线数据查询：成功";
                     }));
                 }));
@@ -393,11 +398,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineQuarter(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineQuarter(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "季K线数据查询：成功";
                     }));
                 }));
@@ -424,11 +429,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineYear(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineYear(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "年K线数据查询：成功";
                     }));
                 }));
@@ -455,11 +460,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineMin1(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineMin1(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "1分钟K线数据查询：成功";
                     }));
                 }));
@@ -486,11 +491,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineMin5(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineMin5(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "5分钟K线数据查询：成功";
                     }));
                 }));
@@ -517,11 +522,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineMin15(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineMin15(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "15分钟K线数据查询：成功";
                     }));
                 }));
@@ -548,11 +553,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineMin30(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineMin30(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "30分钟K线数据查询：成功";
                     }));
                 }));
@@ -579,11 +584,11 @@ namespace Telephone.Presentation.WinForm
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
                 {
-                    CurrentData.Instance.CurrBindSrc.DataSource = CurrentData.Instance.CurrDateReader.GetKLineMin60(stockCode, startDate, endDate);
+                    CurrentData.Instance.BindSources.DataSource = CurrentData.Instance.DateReader.GetKLineMin60(stockCode, startDate, endDate);
 
                     this.Invoke(new EventHandler(delegate
                     {
-                        dataGridView.DataSource = CurrentData.Instance.CurrBindSrc;
+                        dataGridView.DataSource = CurrentData.Instance.BindSources;
                         tsslCurrent.Text = "60分钟K线数据查询：成功";
                     }));
                 }));
@@ -595,5 +600,18 @@ namespace Telephone.Presentation.WinForm
         }
 
         #endregion
+
+        private void tsmLogin_Click(object sender, EventArgs e)
+        {
+            FormLogin frmLogin = new FormLogin();
+            if(DialogResult.OK == frmLogin.ShowDialog(this))
+            {
+                CurrentData.Instance.Account = frmLogin.Account;
+                tsslAccount.Text = string.Format("登录账户：{0} [ID:{1}]", 
+                    CurrentData.Instance.Account.Name, CurrentData.Instance.Account.Id);
+                FormAccount frmAccount = new FormAccount(CurrentData.Instance.Account);
+                frmAccount.ShowDialog(this);
+            }
+        }
     }
 }

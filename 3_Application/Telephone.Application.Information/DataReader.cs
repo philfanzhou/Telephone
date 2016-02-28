@@ -10,6 +10,11 @@ namespace Telephone.Application.Information
     public class DataReader
     {
         private string serverAddress = "http://quantum1234.cloudapp.net:6688/api";
+        public string ServerAddress
+        {
+            get { return serverAddress; }
+            set { serverAddress = value; }
+        }
 
         //获取所有服务名称
         public IEnumerable<string> GetCollectionServices()
