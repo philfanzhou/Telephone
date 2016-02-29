@@ -59,9 +59,9 @@
             this.groupBox1.Controls.Add(this.txtSrvAddress);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(24, 24);
+            this.groupBox1.Location = new System.Drawing.Point(16, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(512, 103);
+            this.groupBox1.Size = new System.Drawing.Size(528, 89);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             // 
@@ -70,14 +70,14 @@
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(24, 127);
+            this.panel1.Location = new System.Drawing.Point(16, 105);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(512, 73);
+            this.panel1.Size = new System.Drawing.Size(528, 45);
             this.panel1.TabIndex = 3;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(297, 29);
+            this.btnClose.Location = new System.Drawing.Point(297, 13);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 1;
@@ -87,7 +87,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(162, 29);
+            this.btnSave.Location = new System.Drawing.Point(162, 13);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 0;
@@ -99,14 +99,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 224);
+            this.ClientSize = new System.Drawing.Size(560, 166);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormConfig";
-            this.Padding = new System.Windows.Forms.Padding(24);
+            this.Padding = new System.Windows.Forms.Padding(16);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormConfig";

@@ -39,7 +39,7 @@ namespace Telephone.Presentation.WinForm
             {
                 Money = decimal.Parse(txtMoney.Text.Trim());
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 lbWarning.Text = "转账金额输入不正确";
                 lbWarning.Visible = true;

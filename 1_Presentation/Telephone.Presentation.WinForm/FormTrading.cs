@@ -146,15 +146,15 @@ namespace Telephone.Presentation.WinForm
                                         stockRealTime.Sell3Price,
                                         stockRealTime.Sell4Price,
                                         stockRealTime.Sell5Price);
-                }
 
-                if (_type.Equals("买入"))
-                {
-                    numPrice.Value = (decimal)stockRealTime.Buy1Price;                  
-                }
-                else if (_type.Equals("卖出"))
-                {
-                    numPrice.Value = (decimal)stockRealTime.Sell1Price;
+                    if (_type.Equals("买入"))
+                    {
+                        numPrice.Value = (decimal)stockRealTime.Buy1Price;
+                    }
+                    else if (_type.Equals("卖出"))
+                    {
+                        numPrice.Value = (decimal)stockRealTime.Sell1Price;
+                    }
                 }
             }
         }

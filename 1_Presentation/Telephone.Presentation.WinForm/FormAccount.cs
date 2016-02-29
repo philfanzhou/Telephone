@@ -68,6 +68,41 @@ namespace Telephone.Presentation.WinForm
             this.lbMarketValue.Text = string.Format("总市值：{0}", account.MarketValue.ToString());// 持仓市值 - 与实时行情相关
         }
 
+        private void DisplayHoldingsRecord(string stockCode = null)
+        {
+            string funName = string.IsNullOrEmpty(stockCode) ? "所有持仓记录查询" : "指定股票持仓记录查询";
+
+            dataGridView.DataSource = null;
+            if (!AccountExist(_account))
+            {
+                ShowMessage(funName + "：操作账户不存在");
+                return;
+            }
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
+                {
+                    this.Invoke(new EventHandler(delegate
+                    {
+                        if (string.IsNullOrEmpty(stockCode))
+                        {
+                            dataGridView.DataSource = CurrentData.GetDataSource(_account.GetAllHoldingsRecord());
+                        }
+                        else
+                        {
+                            var holdingsRecord = _account.GetHoldingsRecord(stockCode);
+                            dataGridView.DataSource = CurrentData.GetDataSource(new IHoldingsRecord[] { holdingsRecord });
+                        }
+                        ShowMessage(funName + "：成功");
+                    }));
+                }));
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(funName + "：失败 " + ex.InnerException.Message);
+            }
+        }
+
         private void tsmBuy_Click(object sender, EventArgs e)
         {
             string funName = "买入";
@@ -104,29 +139,7 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmHoldings_Click(object sender, EventArgs e)
         {
-            string funName = "所有持仓记录查询";
-
-            dataGridView.DataSource = null;
-            if (!AccountExist(_account))
-            {
-                ShowMessage(funName + "：操作账户不存在");
-                return;
-            }
-            try
-            {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
-                {
-                    this.Invoke(new EventHandler(delegate
-                    {
-                        dataGridView.DataSource = CurrentData.GetDataSource(_account.GetAllHoldingsRecord());
-                        ShowMessage(funName + "：成功");
-                    }));
-                }));
-            }
-            catch (Exception ex)
-            {
-                ShowMessage(funName + "：失败 " + ex.InnerException.Message);
-            }
+            DisplayHoldingsRecord();
         }
 
         private void tsmTradingRecord_Click(object sender, EventArgs e)
@@ -158,64 +171,16 @@ namespace Telephone.Presentation.WinForm
 
         private void tsmHoldingsAll_Click(object sender, EventArgs e)
         {
-            string funName = "所有持仓记录查询";
-
-            dataGridView.DataSource = null;
-            if (!AccountExist(_account))
-            {
-                ShowMessage(funName + "：操作账户不存在");
-                return;
-            }
-            try
-            {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
-                {
-                    this.Invoke(new EventHandler(delegate
-                    {
-                        dataGridView.DataSource = CurrentData.GetDataSource(_account.GetAllHoldingsRecord());
-                        ShowMessage(funName + "：成功");
-                    }));
-                }));
-            }
-            catch (Exception ex)
-            {
-                ShowMessage(funName + "：失败 " + ex.InnerException.Message);
-            }
+            DisplayHoldingsRecord();
         }
 
         private void tsmHoldingsSpecified_Click(object sender, EventArgs e)
         {
-            string funName = "指定股票持仓记录查询";
-
-            dataGridView.DataSource = null;
-            if (!AccountExist(_account))
-            {
-                ShowMessage(funName + "：操作账户不存在");
-                return;
-            }
-
             FormQuery frmQuery = new FormQuery(1);
             if (DialogResult.OK != frmQuery.ShowDialog())
                 return;
 
-            string stockCode = frmQuery.StockCode;
-
-            try
-            {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate
-                {
-                    this.Invoke(new EventHandler(delegate
-                    {
-                        var holdingsRecord = _account.GetHoldingsRecord(stockCode);
-                        dataGridView.DataSource = CurrentData.GetDataSource(new IHoldingsRecord[] { holdingsRecord });
-                        ShowMessage(funName + "：成功");
-                    }));
-                }));
-            }
-            catch (Exception ex)
-            {
-                ShowMessage(funName + "：失败 " + ex.InnerException.Message);
-            }
+            DisplayHoldingsRecord(frmQuery.StockCode);
         }
 
         private void tsmTransferIn_Click(object sender, EventArgs e)
